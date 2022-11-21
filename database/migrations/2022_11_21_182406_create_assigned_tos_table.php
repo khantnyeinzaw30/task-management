@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('project_managers', function (Blueprint $table) {
+        Schema::create('assigned_tos', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
-            $table->integer('project_id');
+            $table->integer('task_id');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('project_managers');
+        Schema::dropIfExists('assigned_tos');
     }
 };

@@ -15,4 +15,9 @@ class AuthController extends Controller
     {
         return view('auth.register');
     }
+
+    public function authFailedView()
+    {
+        return view('auth.404_page');
+    }
 }

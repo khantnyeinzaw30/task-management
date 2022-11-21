@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class AuthMiddleware
+class ManagerAuthMiddleware
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,8 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if (!empty(Auth::user())) {
-            if (url()->current() == route('auth.login') || url()->current() == route('auth.register')) {
-                return back();
-            }
+        if (!empty(Auth::user()) && !Auth::user()->is_project_manager) {
+            return redirect()->route('auth.failed');
         }
         return $next($request);
     }

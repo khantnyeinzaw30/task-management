@@ -90,7 +90,7 @@
 
                                     <li>
                                         <a class="dropdown-item" href="{{ route('admin.profile') }}">
-                                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="user"></i>Edit
+                                            <i class="me-2 icon-xxs dropdown-item-icon" data-feather="user"></i>
                                             Profile
                                         </a>
                                     </li>
