@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\TaskController;
 
 Route::redirect('/', '/user/login');
 Route::middleware('redirectIfLogin')->group(function () {
@@ -22,16 +23,17 @@ Route::middleware(['auth:sanctum', 'manager_auth'])->group(function () {
     Route::get('/settings', [UserController::class, 'settings'])->name('admin.settings');
     Route::post('/edit/profile', [UserController::class, 'editProfile'])->name('admin.editProfile');
     Route::post('/change/password', [UserController::class, 'changePassword'])->name('admin.changePassword');
-    // Route::post('change/profile_photo', [UserController::class, 'changeProfilePic'])->name('admin.changeProfilePic');
-    // project data crud
+    // project
     Route::prefix('projects')->group(function () {
         Route::post('/create', [ProjectController::class, 'create'])->name('project.create');
         Route::get('/update/{id}', [ProjectController::class, 'updateView'])->name('project.updatePage');
         Route::post('/update/{id}', [ProjectController::class, 'update'])->name('project.update');
         Route::get('delete/{id}', [ProjectController::class, 'delete'])->name('project.delete');
     });
-    // employee data crud
+    // employee
     Route::prefix('employees')->group(function () {
         Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
     });
+    // assign task to employees
+    Route::get('/assign/task', [TaskController::class, 'index'])->name('task.index');
 });

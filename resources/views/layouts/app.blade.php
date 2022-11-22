@@ -41,18 +41,13 @@
 
                     <!-- Nav item -->
                     <li class="nav-item">
-                        <div class="navbar-heading">Pages</div>
-                    </li>
-
-                    <!-- Nav item -->
-                    <li class="nav-item">
                         <a class="nav-link" href="#">
                             <i data-feather="users" class="nav-icon icon-xs me-2"></i> Employees
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('task.index') }}">
                             <i data-feather="activity" class="nav-icon icon-xs me-2"></i> Tasks
                         </a>
                     </li>
@@ -80,7 +75,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                                 <div class="px-4 pb-0 pt-2">
                                     <div class="lh-1 ">
-                                        <h5 class="mb-1"> John E. Grainger</h5>
+                                        <h5 class="mb-1">Admin Name</h5>
                                         <a href="#" class="text-inherit fs-6">View my profile</a>
                                     </div>
                                     <div class=" dropdown-divider mt-3 mb-2"></div>
@@ -116,7 +111,9 @@
                     </ul>
                 </nav>
             </div>
-            @yield('content')
+            <div class="container-fluid px-6 py-6">
+                @yield('content')
+            </div>
         </div>
     </div>
 
