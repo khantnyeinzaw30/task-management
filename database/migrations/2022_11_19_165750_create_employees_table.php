@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('employee_code');
             $table->integer('user_id');
-            $table->integer('task_id');
             $table->timestamps();
         });
     }
