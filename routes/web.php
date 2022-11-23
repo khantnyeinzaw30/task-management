@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\TaskController;
 
 Route::redirect('/', '/user/login');
@@ -32,8 +31,12 @@ Route::middleware(['auth:sanctum', 'manager_auth'])->group(function () {
     });
     // employee
     Route::prefix('employees')->group(function () {
-        Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
+        Route::get('/', [UserController::class, 'employeeList'])->name('employee.index');
     });
     // assign task to employees
-    Route::get('/assign/task', [TaskController::class, 'index'])->name('task.index');
+    Route::prefix('tasks')->group(function () {
+        Route::get('/', [TaskController::class, 'index'])->name('task.index');
+        Route::post('/create', [TaskController::class, 'createTask'])->name('task.create');
+        Route::get('/assign', [TaskController::class, 'assignTaskView'])->name('task.assignPage');
+    });
 });

@@ -95,7 +95,7 @@
                                 <label for="gender" class="col-sm-4 col-form-label form-label">Gender</label>
                                 <div class="col-md-8 col-12">
                                     <select name="adminGender" class="form-select" id="gender">
-                                        <option value="" selected>Select Gender</option>
+                                        <option value="">Select Gender</option>
                                         <option value="male" {{ $user->gender == 'male' ? 'selected' : '' }}>Male
                                         </option>
                                         <option value="female" {{ $user->gender == 'female' ? 'selected' : '' }}>Female

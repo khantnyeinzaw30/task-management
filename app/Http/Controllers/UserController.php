@@ -63,6 +63,14 @@ class UserController extends Controller
         }
     }
 
+    // employee list view
+    public function employeeList()
+    {
+        $employees = User::where('is_project_manager', 0)->get();
+        // dd($employees->toArray());
+        return view('employee.index', compact('employees'));
+    }
+
     // password validation process
     private function passwordInputValidation($request)
     {
@@ -73,7 +81,7 @@ class UserController extends Controller
         ])->validate();
     }
 
-    // validation admin info
+    // admin info validation process
     private function validateRequest($request)
     {
         Validator::make($request->all(), [

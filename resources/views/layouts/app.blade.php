@@ -39,9 +39,8 @@
                         </a>
                     </li>
 
-                    <!-- Nav item -->
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link" href="{{ route('employee.index') }}">
                             <i data-feather="users" class="nav-icon icon-xs me-2"></i> Employees
                         </a>
                     </li>
@@ -49,6 +48,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('task.index') }}">
                             <i data-feather="activity" class="nav-icon icon-xs me-2"></i> Tasks
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('task.assignPage') }}">
+                            <i data-feather="check" class="nav-icon icon-xs me-2"></i> Assign Tasks
                         </a>
                     </li>
                 </ul>
@@ -111,7 +116,7 @@
                     </ul>
                 </nav>
             </div>
-            <div class="container-fluid px-6 py-6">
+            <div class="container-fluid px-6 py-1">
                 @yield('content')
             </div>
         </div>
@@ -132,7 +137,6 @@
     <!-- clipboard -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.12/clipboard.min.js"></script>
     <!-- Theme JS -->
-    <script src="{{ asset('assets/js/theme.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="{{ asset('assets/js/feather.js') }}"></script>
     <script src="{{ asset('assets/js/copyButton.js') }}"></script>
