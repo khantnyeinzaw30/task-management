@@ -38,5 +38,6 @@ Route::middleware(['auth:sanctum', 'manager_auth'])->group(function () {
         Route::get('/', [TaskController::class, 'index'])->name('task.index');
         Route::post('/create', [TaskController::class, 'createTask'])->name('task.create');
         Route::get('/assign', [TaskController::class, 'assignTaskView'])->name('task.assignPage');
+        Route::post('/assign', [TaskController::class, 'assignTask'])->name('task.assign');
     });
 });

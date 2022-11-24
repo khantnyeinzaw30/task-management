@@ -40,14 +40,20 @@ class EmployeeAuthController extends Controller
             'is_project_manager' => 0,
         ];
         $user = User::create($data);
-        Employee::create([
-            'employee_code' => Str::random(10),
-            'user_id' => $user->id
-        ]);
-        if ($user && Hash::check($request->password, $user->password && !$user->is_project_manager)) {
-            return response()->json([
-                'token' => $user->createToken(time())->plainTextToken
-            ], 200);
+        if ($user && Hash::check($request->password, $user->password)) {
+            Employee::create([
+                'employee_code' => $request->employeeCode,
+                'user_id' => $user->id
+            ]);
+            if (!$user->is_project_manager) {
+                return response()->json([
+                    'token' => $user->createToken(time())->plainTextToken
+                ], 200);
+            } else {
+                return response()->json([
+                    'message' => "Can't access manager account!"
+                ]);
+            }
         } else {
             return response()->json(['token' => null]);
         }

@@ -1,55 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="card">
-        <!-- card header  -->
-        <div class="card-header bg-white border-bottom-0 py-4">
-            <h4 class="mb-0">Employees</h4>
-        </div>
-        <!-- table  -->
-        <div class="table-responsive">
-            <table class="table text-nowrap">
-                <thead class="table-light">
-                    <tr>
-                        <th>Name</th>
-                        <th>Employee Code</th>
-                        <th>Assign task</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="align-middle">
-                            <div class="d-flex align-items-center">
-                                <div>
-                                    <img src="{{ asset('assets/images/avatar/avatar-2.jpg') }}" alt=""
-                                        class="avatar-md avatar rounded-circle">
+    <div class="row mt-3 mt-lg-7">
+        <div class="col-md-6 offset-3">
+            <!-- Card -->
+            <div class="card smooth-shadow-md">
+                <!-- Card body -->
+                <div class="card-body p-6">
+                    <div class="mb-4">
+                        <h4 class="text-primary">Create New Task</h4>
+                    </div>
+                    <!-- Form -->
+                    <form action="{{ route('task.assign') }}" method="post">
+                        @csrf
+                        <!-- Task Name -->
+                        <div class="mb-3">
+                            <label class="form-label">Task</label>
+                            <select name="taskId" class="form-select @error('taskId') is-invalid @enderror">
+                                <option value="">Choose Task</option>
+                                @foreach ($tasks as $task)
+                                    <option value="{{ $task->id }}">{{ $task->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('taskId')
+                                <div class="alert alert-danger mt-3">
+                                    {{ $message }}
                                 </div>
-                                <div class="ms-3 lh-1">
-                                    <h5 class="fw-bold mb-1">Anita Parmar</h5>
-                                    <p class="mb-0">anita@example.com</p>
+                            @enderror
+                        </div>
+                        <!-- Employee Code -->
+                        <div class="mb-3">
+                            <label class="form-label">Employee Code</label>
+                            <select name="employeeCode" class="form-select @error('employeeCode') is-invalid @enderror">
+                                <option value="">Choose Employee</option>
+                                @foreach ($employees as $employee)
+                                    <option value="{{ $employee->employee_code }}">{{ $employee->employee_code }}</option>
+                                @endforeach
+                            </select>
+                            @error('employeeCode')
+                                <div class="alert alert-danger mt-3">
+                                    {{ $message }}
                                 </div>
-                            </div>
-                        </td>
-                        <td class="align-middle">{{ Str::random(10) }}</td>
-                        <td class="align-middle">To do something</td>
-                        <td class="align-middle">
-                            <div class="dropdown dropstart">
-                                <a class="text-muted text-primary-hover" href="#" role="button" id="dropdownTeamOne"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="icon-xxs" data-feather="more-vertical"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownTeamOne">
-                                    <a class="dropdown-item" href="#">Action</a>
-                                    <a class="dropdown-item" href="#">Another action</a>
-                                    <a class="dropdown-item" href="#">Something else
-                                        here</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                            @enderror
+                        </div>
+                        <div class="mb-3">
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

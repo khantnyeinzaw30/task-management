@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('assigned_tos', function (Blueprint $table) {
             $table->id();
-            $table->integer('employee_id');
+            $table->string('employee_code');
             $table->integer('task_id');
             $table->timestamps();
         });

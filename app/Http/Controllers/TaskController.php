@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AssignedTo;
+use App\Models\Employee;
 use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Http\Request;
@@ -23,7 +25,23 @@ class TaskController extends Controller
     // assign task page
     public function assignTaskView()
     {
-        return view('task.assign_to');
+        $tasks = Task::select('id', 'name')->get();
+        $employees = Employee::select('employees.employee_code')->get();
+        // dd($tasks->toArray(), $employees->toArray());
+        return view('task.assign_to', compact('employees', 'tasks'));
+    }
+
+    //  assign task
+    public function assignTask(Request $request)
+    {
+        Validator::make($request->all(), [
+            'taskId' => 'required',
+            'employeeCode' => 'required'
+        ])->validate();
+        $data = ['employee_code' => $request->employeeCode, 'task_id' => $request->taskId];
+        // dd($request->all(), $data);
+        AssignedTo::create($data);
+        return redirect()->route('admin.home');
     }
 
     // create task
