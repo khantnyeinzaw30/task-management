@@ -24,6 +24,7 @@ Route::post('/login', [EmployeeAuthController::class, 'login']);
 Route::post('/register', [EmployeeAuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/tasks', [TaskController::class, 'getTasks']);
+    Route::get('/assigned_tasks/{employee_code}', [TaskController::class, 'getAssignedTasks']);
     Route::post('/change/task_status', [TaskController::class, 'changeTaskStatus']);
+    Route::get('/task-details/{id}', [TaskController::class, 'getTaskDetails']);
 });

@@ -34,7 +34,7 @@
                             <select name="employeeCode" class="form-select @error('employeeCode') is-invalid @enderror">
                                 <option value="">Choose Employee</option>
                                 @foreach ($employees as $employee)
-                                    <option value="{{ $employee->employee_code }}">{{ $employee->employee_code }}</option>
+                                    <option value="{{ $employee->employee_code }}">{{ $employee->employee_name }}</option>
                                 @endforeach
                             </select>
                             @error('employeeCode')

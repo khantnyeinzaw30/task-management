@@ -9,5 +9,5 @@ class AssignedTo extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['employee_id', 'task_id'];
+    protected $fillable = ['employee_code', 'task_id'];
 }

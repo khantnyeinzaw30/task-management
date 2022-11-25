@@ -16,17 +16,23 @@ class EmployeeAuthController extends Controller
     {
         $user = User::where('email', $request->email)->first();
         if ($user && Hash::check($request->password, $user->password)) {
+            $employee_code = Employee::where('user_id', $user->id)->pluck('employee_code')->first();
             if (!$user->is_project_manager) {
                 return response()->json([
-                    'token' => $user->createToken(time())->plainTextToken
+                    'token' => $user->createToken(time())->plainTextToken,
+                    'employee_code' => $employee_code
                 ], 200);
             } else {
                 return response()->json([
+                    'status' => 'Auth Failed!',
                     'message' => "Can't access manager account!"
                 ]);
             }
         } else {
-            return response()->json(['token' => null]);
+            return response()->json([
+                'status' => 'Login Failed!',
+                'message' => 'The credetials do not match!'
+            ]);
         }
     }
 
@@ -41,21 +47,23 @@ class EmployeeAuthController extends Controller
         ];
         $user = User::create($data);
         if ($user && Hash::check($request->password, $user->password)) {
-            Employee::create([
-                'employee_code' => $request->employeeCode,
-                'user_id' => $user->id
-            ]);
+            $employee_code = Employee::where('user_id', $user->id)->pluck('employee_code')->first();
             if (!$user->is_project_manager) {
                 return response()->json([
-                    'token' => $user->createToken(time())->plainTextToken
+                    'token' => $user->createToken(time())->plainTextToken,
+                    'employee_code' => $employee_code
                 ], 200);
             } else {
                 return response()->json([
+                    'status' => 'Auth failed',
                     'message' => "Can't access manager account!"
                 ]);
             }
         } else {
-            return response()->json(['token' => null]);
+            return response()->json([
+                'status' => 'Login Failed!',
+                'message' => 'The credetials do not match!'
+            ]);
         }
     }
 }
