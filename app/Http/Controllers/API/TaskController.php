@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     // return task data
-    public function getAssignedTasks($employee_code)
+    public function getAssignedTasks(Request $request)
     {
         $tasks = AssignedTo::select('tasks.*', 'projects.name as project_name')
-            ->where('assigned_tos.employee_code', $employee_code)
+            ->where('assigned_tos.employee_code', $request->employeeCode)
             ->leftJoin('tasks', 'assigned_tos.task_id', 'tasks.id')
             ->leftjoin('projects', 'tasks.project_id', 'projects.id')
             ->get();
@@ -40,7 +40,7 @@ class TaskController extends Controller
         $task_status = Task::where('id', $request->taskId)->pluck('assigned_status')->first();
         return response()->json([
             'status' => 'success',
-            'assigned_status' => $task_status
+            'assignedStatus' => $task_status
         ], 200);
     }
 }

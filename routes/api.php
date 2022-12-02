@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\EmployeeAuthController;
+use App\Http\Controllers\API\ProjectController;
 use App\Http\Controllers\API\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,9 @@ Route::post('/login', [EmployeeAuthController::class, 'login']);
 Route::post('/register', [EmployeeAuthController::class, 'register']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/assigned_tasks/{employee_code}', [TaskController::class, 'getAssignedTasks']);
+    Route::post('/assigned-tasks', [TaskController::class, 'getAssignedTasks']);
     Route::post('/change/task_status', [TaskController::class, 'changeTaskStatus']);
     Route::get('/task-details/{id}', [TaskController::class, 'getTaskDetails']);
+    Route::get('/projects', [ProjectController::class, 'getProjects']);
+    Route::post('/project/mark_done', [ProjectController::class, 'markProjectDone']);
 });
