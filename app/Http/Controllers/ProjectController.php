@@ -12,7 +12,8 @@ class ProjectController extends Controller
     public function homeView()
     {
         $projects = Project::select('*')->get();
-        return view('project.index', compact('projects'));
+        $isDoneCount = count(Project::where('is_done', true)->get());
+        return view('project.index', compact('projects', 'isDoneCount'));
     }
 
     // create project

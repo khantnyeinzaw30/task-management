@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="row mt-6">
-        <div class="col-md-12 col-12">
+        <div class="col-md-8 offset-md-2 col-12">
             <!-- card  -->
             <div class="card">
                 <!-- card header  -->
@@ -16,8 +16,6 @@
                             <tr>
                                 <th>Name</th>
                                 <th>Email</th>
-                                <th>Gender</th>
-                                <th>Task</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -29,16 +27,10 @@
                                     <td class="align-middle">
                                         <a href="#" class="text-decoration-none">{{ $employee->email }}</a>
                                     </td>
-                                    <td class="align-middle">{{ $employee->gender }}</td>
-                                    <td class="align-middle">Hello</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <!-- card footer  -->
-                <div class="card-footer bg-white text-center">
-                    <a href="#">View All Projects</a>
                 </div>
             </div>
 

@@ -66,8 +66,7 @@ class UserController extends Controller
     // employee list view
     public function employeeList()
     {
-        $employees = User::where('is_project_manager', 0)->get();
-        // dd($employees->toArray());
+        $employees = User::select('id', 'name', 'email')->where('is_project_manager', 0)->get();
         return view('employee.index', compact('employees'));
     }
 

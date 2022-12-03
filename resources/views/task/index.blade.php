@@ -125,9 +125,9 @@
                                         @if ($task->priority == '0')
                                             <span class="badge text-info">Low</span>
                                         @elseif ($task->priority == '1')
-                                            <span class="badge text-bg-warning">Medium</span>
+                                            <span class="badge text-warning">Medium</span>
                                         @elseif ($task->priority == '2')
-                                            <span class="badge text-bg-danger">High</span>
+                                            <span class="badge text-danger">High</span>
                                         @endif
                                     </td>
                                     <td class="align-middle">

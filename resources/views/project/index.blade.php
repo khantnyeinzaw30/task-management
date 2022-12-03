@@ -107,7 +107,7 @@
                     <!-- project number -->
                     <div>
                         <h1 class="fw-bold">{{ count($projects) }}</h1>
-                        <p class="mb-0"><span class="text-dark me-2">2</span>Completed</p>
+                        <p class="mb-0"><span class="text-dark me-2">{{ $isDoneCount }}</span>Completed</p>
                     </div>
                 </div>
             </div>
